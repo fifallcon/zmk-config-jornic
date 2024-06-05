@@ -5,10 +5,34 @@
  */
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/keys.h>
 
 / {
+    macros {
+        password1: password1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp LS(E) &kp X &kp I &kp L &kp E &kp N1 &kp N2 &kp N3>;
+            label = "PASSWORD1";
+        };
+
+        password2: password2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp LS(E) &kp X &kp I &kp L &kp E &kp N1 &kp N2 &kp N3 &kp N4>;
+            label = "PASSWORD2";
+        };
+
+        PlayPauseYandex: PlayPauseYandex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kt LCTRL &kt LEFT_SHIFT &kp SPACE &kt LEFT_CONTROL &kt LEFT_SHIFT>;
+            label = "PLAYPAUSEYANDEX";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -44,11 +68,11 @@
 
         FunctionalLayer {
             bindings = <
-&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6                    &kp F7          &kp F8        &kp F9        &kp F10       &kp F11  &kp F12
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans          &trans        &trans        &trans        &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans          &trans        &trans        &trans        &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &bt BT_CLR_ALL  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &trans   &trans
-                &trans  &trans  &trans  &trans  &trans    &trans  &trans          &trans        &trans        &trans
+&kp F1  &kp F2  &kp F3  &kp F4  &kp F5        &kp F6                                       &kp F7      &kp F8        &kp F9        &kp F10       &kp F11     &kp F12
+&trans  &trans  &trans  &trans  &trans        &trans                                       &trans      &trans        &trans        &trans        &trans      &trans
+&trans  &trans  &trans  &trans  &trans        &trans                                       &trans      &trans        &trans        &trans        &password1  &password2
+&trans  &trans  &trans  &trans  &kp C_VOL_DN  &kp C_VOLUME_UP  &trans              &trans  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &kp LG(D)   &kp LG(L)
+                &trans  &trans  &trans        &trans           &PlayPauseYandex    &trans  &trans      &trans        &trans        &trans
             >;
         };
     };
